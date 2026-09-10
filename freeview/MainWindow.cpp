@@ -10439,7 +10439,8 @@ void MainWindow::SetEditRefPoint(LayerMRI *mri, double *pos_in)
   int n[3];
   mri->WorldToVoxelIndex(pos_in, n);
   mri->VoxelIndexToWorld(n, pos);
-  //  qDebug() << "num of marks" << ref->GetNumberOfMarks();
+  if (!ref->IsVisible())
+    ref->SetVisible(true);
   if (ref->GetMRIRef() != mri || ref->GetNumberOfMarks() != 1)
   {
     ref->SetMRIRef(mri);
